@@ -7,6 +7,8 @@ import TRTFilters from "@/components/TRTDashboard/TRTFilters";
 import TRTSummaryCards from "@/components/TRTDashboard/TRTSummaryCards";
 import TRTTrendsChart from "@/components/TRTDashboard/TRTTrendsChart";
 import { mockData, TRTData } from '@/data/TRTDashboardMockData';
+import TrtGraphs from "@/components/TRTDashboard/TrtGraphs";
+
 
 export default function TRTDashboardPage() {
     const [selectedYear, setSelectedYear] = useState<number | 'All'>('All');
@@ -45,15 +47,20 @@ export default function TRTDashboardPage() {
             </div>
 
             {/* Scrollable Main Content */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                {/* Charts */}
+            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-8">
+                {/* Charts: Trends & Comparisons */}
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                     <TRTTrendsChart />
                     <TRTComparisons />
                 </div>
 
-                {/* Filters + Table */}
-                <div className="space-y-6">
+                {/* TRT vs GRT/NRT/Deadweight Graphs */}
+                <div>
+                    <TrtGraphs />
+                </div>
+
+                {/* Filters + Data Table */}
+                <div className="space-y-4">
                     <TRTFilters
                         selectedYear={selectedYear}
                         onYearChange={setSelectedYear}
@@ -64,6 +71,7 @@ export default function TRTDashboardPage() {
                     <TRTDataTable data={filteredData} />
                 </div>
             </div>
+
         </div>
     );
 }
