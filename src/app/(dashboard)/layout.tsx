@@ -20,6 +20,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
   }, [router]);
 
+  
+
   if (loading) return null; // Prevent flash before auth check
 
   return (

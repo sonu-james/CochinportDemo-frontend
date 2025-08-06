@@ -66,15 +66,27 @@ export default function BerthTrackerCard({
   )}
 
   {/* Ship ID or Availability Message */}
-  <div className="flex justify-center items-center mb-3">
-    <p
-      className={`font-medium truncate text-sm ${
-        currentShipId ? "text-gray-800" : "text-red-600"
-      }`}
-    >
-      {currentShipId || "Berth is available"}
-    </p>
-  </div>
+  <div className="flex flex-col items-center justify-center mb-3">
+
+
+      <p
+    className={`font-medium truncate text-sm ${
+      currentShipId ? "text-gray-800" : "text-red-600"
+    }`}
+  >
+    {currentShipId || "Berth is available"}
+  </p>
+  {!currentShipId && (
+    <img
+      src="/images/no-ship.png" // Make sure this exists in your public/images folder
+      alt="Berth is available"
+      className="w-32 h-auto mb-2"
+    />
+  )}
+
+
+</div>
+
 
   {/* Arrival & Departure Info */}
   {currentShipId && (

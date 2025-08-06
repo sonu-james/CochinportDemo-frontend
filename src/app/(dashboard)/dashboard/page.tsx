@@ -7,10 +7,10 @@ import Card from '@/components/BerthTrackerCard';
 import { useEffect, useState } from 'react';
 import CargoStats from '@/components/CargoStats';
 import ShipListModal from '@/components/ShipListModal';
-
 import { ShipDetails, Berth, berthData } from '@/data/MockDashboardData';
 import DashboardNotificationSidebar from '@/components/DashboardNotificationSidebar';
 import { useRouter } from 'next/navigation';
+import ThemeToggle from '@/components/ThemeToggle';
 const cargoTypes = [
   'All',
   'Containerised',
@@ -86,7 +86,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative h-screen bg-gray-100 ">
+    <div className="relative h-screen bg-gray-100  text-gray-900  ">
       <main className="flex flex-col h-full">
         {/* Header Section */}
         <div className="flex-shrink-0 p-4">
@@ -121,13 +121,13 @@ export default function HomePage() {
 
           {/* Filter Section */}
           <div className="px-3 mt-4 flex justify-end">
-            <div className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
-              <div className="flex flex-col">
+            <div className="flex flex-col sm:flex-row gap-6 w-full">
+              <div className="flex flex-col w-full max-w-xs">
                 <label className="text-sm font-semibold text-gray-700 mb-2">Cargo Type</label>
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white text-gray-900"
+                  className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white text-gray-900 w-full"
                 >
                   {cargoTypes.map((type, i) => (
                     <option key={i} value={type}>{type}</option>
@@ -135,12 +135,12 @@ export default function HomePage() {
                 </select>
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full max-w-xs">
                 <label className="text-sm font-semibold text-gray-700 mb-2">Country</label>
                 <select
                   value={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
-                  className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white text-gray-900"
+                  className="border border-gray-300 rounded-md px-4 py-2 text-sm bg-white text-gray-900 w-full"
                 >
                   {countries.map((country, i) => (
                     <option key={i} value={country}>{country}</option>
@@ -173,6 +173,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Main Grid */}

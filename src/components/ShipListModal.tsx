@@ -17,13 +17,8 @@ export default function ShipListModal({ berth, isOpen, onSelectShip, onClose }: 
   const today = new Date();
   today.setHours(0, 0, 0, 0); // normalize
 
-  const currentShip = berth.shipDetails.find((ship) => {
-    const arrival = new Date(ship.arrivalDate);
-    const departure = new Date(ship.departureDate);
-    arrival.setHours(0, 0, 0, 0);
-    departure.setHours(0, 0, 0, 0);
-    return arrival <= today && today <= departure;
-  });
+  const currentShip = berth.shipDetails.find((ship) => ship.isCurrent);
+
 
 
   return (

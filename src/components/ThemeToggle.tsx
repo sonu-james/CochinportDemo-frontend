@@ -1,32 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { useTheme } from '@/components/ThemeProvider';
+import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const preferredTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    setTheme(preferredTheme);
-    document.documentElement.classList.add(preferredTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    document.documentElement.classList.remove(theme);
-    document.documentElement.classList.add(newTheme);
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 text-xl rounded transition hover:bg-gray-200 dark:hover:bg-gray-700"
+      className="p-2 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+      title="Toggle Theme"
     >
-      {theme === 'light' ? <FiMoon /> : <FiSun />}
+      {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
     </button>
   );
 }
